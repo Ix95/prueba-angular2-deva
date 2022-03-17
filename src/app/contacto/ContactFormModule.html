@@ -1,0 +1,43 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <p>
+    Nombre:
+    <input type="text" formControlName="nombre" required />
+    <span *ngIf="this.form.get('nombre')?.errors?.['required']">
+      (El nombre es obligatorio)
+    </span>
+    <span *ngIf="this.form.get('nombre')?.errors?.['pattern']">
+      (El nombre no es válido)
+    </span>
+  </p>
+  <p>
+    Correo:
+    <input type="email" formControlName="correo" required />
+    <span *ngIf="this.form.get('correo')?.errors?.['required']">
+      (El correo es obligatorio)
+    </span>
+    <span *ngIf="this.form.get('correo')?.errors?.['email']">
+      (El correo no es válido)
+    </span>
+  </p>
+  <p>
+    Teléfono:
+    <input type="text" formControlName="telefono" required />
+    <span *ngIf="this.form.get('telefono')?.errors?.['required']">
+      (El teléfono es obligatorio)
+    </span>
+    <span *ngIf="this.form.get('telefono')?.errors?.['pattern']">
+      (El teléfono no es válido)
+    </span>
+  </p>
+  <p>
+    Mensaje<br />
+    <textarea rows="10" cols="70" formControlName="mensaje" required></textarea>
+    <span *ngIf="this.form.get('mensaje')?.errors?.['required']">
+      (El mensaje es obligatorio)
+    </span>
+    <span *ngIf="this.form.get('mensaje')?.errors?.['maxlength']">
+      ( El mensaje debe tener como máximo {{getMaxChars()}} caracteres)
+    </span>
+  </p>
+  <button type="submit">Enviar</button>
+</form>
